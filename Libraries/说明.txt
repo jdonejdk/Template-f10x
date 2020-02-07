@@ -1,0 +1,4 @@
+【STM32_USB-FS-Device_Driver】
+	STM32F10x系列CPU USB外设驱动程序
+	版本: V4.1.0  
+	发布日期: 26-May-2017
