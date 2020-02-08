@@ -839,32 +839,6 @@ static void UartSend(UART_T *_pUart, uint8_t *_ucaBuf, uint16_t _usLen)
 	for (i = 0; i < _usLen; i++)
 	{
 		/* 如果发送缓冲区已经满了，则等待缓冲区空 */
-	#if 0
-		/*
-			在调试GPRS例程时，下面的代码出现死机，while 死循环
-			原因： 发送第1个字节时 _pUart->usTxWrite = 1；_pUart->usTxRead = 0;
-			将导致while(1) 无法退出
-		*/
-		while (1)
-		{
-			uint16_t usRead;
-
-			DISABLE_INT();
-			usRead = _pUart->usTxRead;
-			ENABLE_INT();
-
-			if (++usRead >= _pUart->usTxBufSize)
-			{
-				usRead = 0;
-			}
-
-			if (usRead != _pUart->usTxWrite)
-			{
-				break;
-			}
-		}
-	#else
-		/* 当 _pUart->usTxBufSize == 1 时, 下面的函数会死掉(待完善) */
 		while (1)
 		{
 			__IO uint16_t usCount;
@@ -877,8 +851,8 @@ static void UartSend(UART_T *_pUart, uint8_t *_ucaBuf, uint16_t _usLen)
 			{
 				break;
 			}
+			USART_ITConfig(_pUart->uart, USART_IT_TXE, ENABLE);
 		}
-	#endif
 
 		/* 将新数据填入发送缓冲区 */
 		_pUart->pTxBuf[_pUart->usTxWrite] = _ucaBuf[i];

@@ -14,7 +14,7 @@
 #ifndef __BSP_TIMER_H
 #define __BSP_TIMER_H
 
-#include "stm32f10x.h"
+#include "bsp.h"
 /*
 	在此定义若干个软件定时器全局变量
 	注意，必须增加__IO 即 volatile，因为这个变量在中断和主程序中同时被访问，有可能造成编译器错误优化。
@@ -33,8 +33,8 @@ typedef struct
 {
 	volatile uint8_t Mode;		/* 计数器模式，1次性 */
 	volatile uint8_t Flag;		/* 定时到达标志  */
-	volatile uint32_t Count;	/* 计数器 */
-	volatile uint32_t PreLoad;	/* 计数器预装值 */
+	volatile uint32_t Count;	        /* 计数器 */
+	volatile uint32_t PreLoad;	    /* 计数器预装值 */
 }SOFT_TMR;
 
 /* 提供给其他C文件调用的函数 */
