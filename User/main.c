@@ -15,7 +15,8 @@
 		$KEY=L#					摇杆左键按下
 		$KEY=R#					摇杆右键按下
 */
-
+#define NANOPRINTF_IMPLEMENTATION
+#include "nanoprintf.h"
 #include "bsp.h"
 #include "hw_config.h"			/* USB模块 */
 
@@ -104,6 +105,7 @@ static void PrintHelpInfo(void)
 	printf("  $KEY=D#       摇杆下键按\r\n");
 	printf("  $KEY=L#       摇杆左键按下\r\n");
 	printf("  $KEY=R#       摇杆右键按下\r\n");
+    npf_pprintf(0, 0, "  $KEY=R#       摇杆右键按下\r\n");
 }
 
 /*

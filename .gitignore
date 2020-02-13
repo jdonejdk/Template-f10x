@@ -4,7 +4,8 @@ SI.si4project/
 #MDK Project
 Project/DebugConfig/
 Project/RTE/
-Project/Flash/
+Project/103ZE/
+Project/103C8/
 *.uvoptx
 project.uvguix.*
 
